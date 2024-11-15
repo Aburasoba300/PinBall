@@ -17,6 +17,13 @@ public class ScoreController : MonoBehaviour
     //衝突時に呼ばれる関数
     private void OnCollisionEnter(Collision other)
     {
+        //スコアを加算
+        score += a;
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+
         //タグによって得点を変える
         if (tag == "SmallStarTag")
         {
@@ -30,14 +37,7 @@ public class ScoreController : MonoBehaviour
         {
             a = 20;
         }
-
-
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        //スコアを加算
-        score += a;
+        
 
         //シーン中のScoreオブジェクトを取得
         this.scoreText = GameObject.Find("Score").GetComponent<Text>();
