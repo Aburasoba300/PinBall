@@ -8,52 +8,66 @@ public class ScoreController : MonoBehaviour
 {
     //得点を表示するテキスト
     private Text scoreText;
+    
     //得点
     private int score = 0;
+    
 
-    int a;
-
-
-    //衝突時に呼ばれる関数
-    private void OnCollisionEnter(Collision other)
+    //スコア加算関数
+    private void AddScore(int a)
     {
-        Debug.Log("OncollisionEnter開始");
-        //スコアを加算
+        //スコア加算
         score += a;
-        Debug.Log("OncollisionEnter終了");
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-
-        //タグによって得点を変える
-        if (tag == "SmallStarTag")
-        {
-            Debug.Log("if文1");
-            a = 5;
-        }
-        else if (tag == "LargeStarTag")
-        {
-            Debug.Log("if文2");
-            a = 10;
-        }
-        else if (tag == "SmallCloudTag" || tag == "LargeCloudTag")
-        {
-            Debug.Log("if文3");
-            a = 20;
-        }
-        
-
-        //シーン中のScoreオブジェクトを取得
-        this.scoreText = GameObject.Find("Score").GetComponent<Text>();
 
         //int型をstring型に変換
         scoreText.text = score.ToString();
     }
 
+
+    //衝突時に呼ばれる関数
+    private void OnCollisionEnter(Collision collision)
+    {
+        //確認Debug.Log("OncollisionEnter開始");
+
+
+        //タグによって得点を変える
+        if (collision.gameObject.CompareTag("SmallStarTag"))
+        {
+            //確認Debug.Log("if文1");
+            
+            AddScore(5);
+        }
+        else if (collision.gameObject.CompareTag("LargeStarTag"))
+        {
+            //確認Debug.Log("if文2");
+            
+            AddScore(10);
+        }
+        else if (collision.gameObject.CompareTag("SmallCloudTag") || collision.gameObject.CompareTag("LargeCloudTag"))
+        {
+            //確認Debug.Log("if文3");
+            
+            AddScore(20);
+        }
+        
+        //確認Debug.Log("OncollisionEnter終了");
+        
+
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+
+    }
+
     // Update is called once per frame
     void Update()
     {
+         //シーン中のScoreオブジェクトを取得
+        this.scoreText = GameObject.Find("Score").GetComponent<Text>();
+
+        //int型をstring型に変換
+        scoreText.text = score.ToString();
         
     }
  
