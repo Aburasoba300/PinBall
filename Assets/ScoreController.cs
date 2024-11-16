@@ -17,8 +17,10 @@ public class ScoreController : MonoBehaviour
     //衝突時に呼ばれる関数
     private void OnCollisionEnter(Collision other)
     {
+        Debug.Log("OncollisionEnter開始");
         //スコアを加算
         score += a;
+        Debug.Log("OncollisionEnter終了");
     }
     // Start is called before the first frame update
     void Start()
@@ -27,14 +29,17 @@ public class ScoreController : MonoBehaviour
         //タグによって得点を変える
         if (tag == "SmallStarTag")
         {
+            Debug.Log("if文1");
             a = 5;
         }
         else if (tag == "LargeStarTag")
         {
+            Debug.Log("if文2");
             a = 10;
         }
         else if (tag == "SmallCloudTag" || tag == "LargeCloudTag")
         {
+            Debug.Log("if文3");
             a = 20;
         }
         
